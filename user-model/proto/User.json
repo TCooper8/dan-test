@@ -1,0 +1,106 @@
+{
+  "namespace": "vanner.users",
+  "messages": {
+    "User": {
+      "id": "string",
+      "active": "bool",
+      "emailAddress": "string",
+      "firstName": "string",
+      "lastName": "string"
+    },
+    "Echo": {
+      "message": "string"
+    },
+    "EchoReply": {
+      "message": "string"
+    },
+    "DeleteUser": {
+      "id": "string"
+    },
+    "DeleteUserReply": {
+      "code": "int",
+      "status": "string option"
+    },
+    "GetUser": {
+      "id": "string"
+    },
+    "GetUserReply": {
+      "user": "User option",
+      "code": "int",
+      "status": "string option"
+    },
+    "FindUser": {
+      "emailAddress": "string"
+    },
+    "FindUserReply": {
+      "user": "User option",
+      "code": "int",
+      "status": "string option"
+    },
+    "PostUser": {
+      "emailAddress": "string",
+      "firstName": "string",
+      "lastName": "string"
+    },
+    "PostUserReply": {
+      "id": "string option",
+      "code": "int",
+      "status": "string option"
+    },
+    "ListUsers": {
+      "offset": "int",
+      "limit": "int"
+    },
+    "ListUsersReply": {
+      "users": "User list option",
+      "code": "int",
+      "error": "string option"
+    },
+    "UserCreated": {
+      "id": "string"
+    },
+    "UserUpdated": {
+      "id": "string"
+    },
+    "UserDeleted": {
+      "id": "string"
+    }
+  },
+  "services": {
+    "IUserService": {
+      "get": {
+        "request": "GetUser",
+        "response": "GetUserReply"
+      },
+      "delete": {
+        "request": "DeleteUser",
+        "response": "DeleteUserReply"
+      },
+      "echo": {
+        "request": "Echo",
+        "response": "EchoReply"
+      },
+      "list": {
+        "request": "ListUsers",
+        "response": "ListUsersReply"
+      },
+      "find": {
+        "request": "FindUser",
+        "response": "FindUserReply"
+      },
+      "post": {
+        "request": "PostUser",
+        "response": "PostUserReply"
+      },
+      "put": {
+        "request": "PostUser",
+        "response": "PostUserReply"
+      }
+    }
+  },
+  "events": {
+    "created": "UserCreated",
+    "updated": "UserUpdated",
+    "deleted": "UserDeleted"
+  }
+}

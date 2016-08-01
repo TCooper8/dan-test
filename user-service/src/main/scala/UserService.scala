@@ -42,16 +42,7 @@ case class UserService(cloud: CloudInterface) extends IUserService {
     DeleteUserReply(200, None)
   }
 
-  var i = 0
-
   def get(cmd: GetUser): GetUserReply = {
-    this synchronized {
-      i += 1
-
-      if (i % 2 == 0) {
-        throw new Exception("BAM!")
-      }
-    }
     users.synchronized {
       users get cmd.id
     } map { user =>
@@ -174,7 +165,5 @@ object Main {
     val cloud = HttpCloud(system, "amqp://guest:guest@129.168.99.100:5672/", port)
     Await.result(cloud.start, Duration.Inf)
     Await.result(cloud serviceOf (UserService(cloud)), Duration.Inf)
-
-    cloud.close
   }
 }
